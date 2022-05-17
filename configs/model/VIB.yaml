@@ -1,0 +1,20 @@
+_target_: src.models.Mnist.MnistVIB.MnistVIB
+
+z_dim: 20
+#output_size: 10
+
+image_preprocessor: null
+encoder:
+  _target_: src.models.Encoders.DiagonalEncoder
+  hidden_sizes: [784 ,1024, 1024]
+  z_dim: 20
+
+decoder:
+  _target_: src.models.Decoders.MultinomialDecoder
+  hidden_sizes: [20, 10]
+  num_sample: 1
+
+lr: 1e-3
+weight_decay: 0.005
+beta: 0.001
+

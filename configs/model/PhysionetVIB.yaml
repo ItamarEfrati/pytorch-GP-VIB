@@ -1,0 +1,20 @@
+_target_: src.models.HMnist.HMnistModels.HMnistVIB
+
+z_dim: 35
+
+image_preprocessor: null
+encoder:
+  _target_: src.models.Encoders.DiagonalEncoder
+  hidden_sizes: [1680, 128 ,128]
+  z_dim: 35
+
+decoder:
+  _target_: src.models.Decoders.MultinomialDecoder
+  hidden_sizes: [35 , 2]
+  num_sample: 1
+
+num_classes: 2
+lr: 1e-3
+weight_decay: 0.005
+beta: 0.001
+

@@ -1,0 +1,32 @@
+_target_: src.models.HMnist.HMnistModels.HMnistGPVIB
+
+z_dim: 256
+
+image_preprocessor: null
+encoder:
+  _target_: src.models.Encoders.BandedJointEncoder
+  hidden_sizes: [784 ,256 ,256, 256]
+  precision_activation:
+    _target_: torch.nn.Softplus
+  z_size: 256
+  kernel_size: 3
+
+decoder:
+  _target_: src.models.Decoders.CnnMultinomialDecoder
+  kernel_size: 10
+  padding: 0
+  hidden_sizes: [256, 256, 10]
+  num_sample: 1
+
+num_classes: 10
+lr: 1e-3
+weight_decay: 0.05
+beta: 0.8
+
+# gp
+kernel: cauchy
+kernel_scales: 1
+sigma: 1
+length_scale: 2
+time_length: 10
+
